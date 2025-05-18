@@ -2,14 +2,13 @@ pipeline {
     agent any
     environment {
         CONTAINER_NAME = "prikm_lab2"
-        IMAGE_NAME = "squeezyfish/prikm"
-        REACT_APP_DIR = "my-react-app"
+        IMAGE_NAME = "squeezyfish/prikm-fasttest"
     }
- 
+
     stages {
         stage('Start') {
             steps {
-                echo 'Lab_2: started by GitHub webhook'
+                echo '🚀 Fast deploy of single index.html'
             }
         }
 
@@ -19,18 +18,7 @@ pipeline {
             }
         }
 
-        stage('Build React Application') {
-            steps {
-                dir("${REACT_APP_DIR}") {
-                    sh '''
-                    npm install
-                    npm run build
-                    '''
-                }
-            }
-        }
- 
-        stage('Cleanup old containers') {
+        stage('Cleanup old container') {
             steps {
                 sh '''
                 if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
@@ -42,41 +30,26 @@ pipeline {
                 '''
             }
         }
- 
-        stage('Image build') {
+
+        stage('Build lightweight image') {
             steps {
                 sh '''
-                # Create a temporary Dockerfile for the React app
-                cat > Dockerfile.react << EOL
+                cat > Dockerfile.light <<EOL
                 FROM nginx:alpine
-                COPY ${REACT_APP_DIR}/build /usr/share/nginx/html
+                COPY index.html /usr/share/nginx/html/index.html
                 EXPOSE 80
                 CMD ["nginx", "-g", "daemon off;"]
                 EOL
 
-                docker build -f Dockerfile.react -t prikm:latest .
-                docker tag prikm $IMAGE_NAME:latest
-                docker tag prikm $IMAGE_NAME:$BUILD_NUMBER
+                docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
                 '''
             }
         }
- 
-        stage('Push to registry') {
-            steps {
-                withDockerRegistry([credentialsId: "dockerhub_token", url: ""]) {
-                    sh '''
-                    docker push $IMAGE_NAME:latest
-                    docker push $IMAGE_NAME:$BUILD_NUMBER
-                    '''
-                }
-            }
-        }
- 
-        stage('Deploy image') {
+
+        stage('Run container') {
             steps {
                 sh '''
                 docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME:latest
-                echo "Deployment completed successfully!"
                 '''
             }
         }
@@ -84,10 +57,10 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful!'
+            echo '✅ Lightweight index.html deployed!'
         }
         failure {
-            echo 'Deployment failed!'
+            echo '❌ Deployment failed!'
         }
     }
 }
