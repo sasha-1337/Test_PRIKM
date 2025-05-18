@@ -1,0 +1,99 @@
+﻿.commonContainer {
+    position: absolute; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: row; 
+    gap: 15px;
+}
+
+.descriptionVynilContainer {
+    width: 40%;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lyricsContainer {
+    width: 60%;
+    height: 900px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 15px 5px 15px 15px;
+    border-radius: 10px;
+}
+
+.lyrics {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+}
+
+.descriptionContainer {
+    width: 100%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 15px 5px 15px 15px;
+    border-radius: 10px;
+}
+
+.description {
+    position: relative;
+    width: 50%;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/*.descriptionContainer {
+    width: 40%;
+    height: 900px;
+    background-color: rgba(255,255,255,0.3);
+    padding: 15px 5px 15px 15px;
+    border-radius: 10px;
+}
+
+.description {
+    position: relative;*/
+    /*height: 100%;*/
+    /*display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;*/
+    /*padding: 15px 5px 15px 5px;*/
+/*}*/
+
+.scrollContent {
+    max-height: 100%/*calc(100% - 50px)*/; /* Висота без заголовка */
+    overflow-y: auto; /* Додаємо вертикальний скрол */
+    padding-right: 10px;
+    width: 100%;
+}
+
+    /* Кастомний скролбар */
+    .scrollContent::-webkit-scrollbar {
+        width: 10px; /* Товщина скролбару */
+    }
+
+    .scrollContent::-webkit-scrollbar-track {
+        background: none; /*rgba(255,255,255,0.8);*/ /* Колір фону */
+        border-radius: 4px;
+    }
+
+    .scrollContent::-webkit-scrollbar-thumb {
+        background: rgb(255, 255, 255, 0.7); /* Колір скролу */
+        border-radius: 4px;
+    }
+
+        .scrollContent::-webkit-scrollbar-thumb:hover {
+            background: white; /* Колір при наведенні */
+        }
+
