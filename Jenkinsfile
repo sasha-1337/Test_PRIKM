@@ -34,12 +34,14 @@ pipeline {
         stage('Build lightweight image') {
             steps {
                 sh """
-                cat > Dockerfile.light <<EOL
-                FROM nginx:alpine
-                COPY public/index.html /usr/share/nginx/html/index.html
-                EXPOSE 80
-                CMD ["nginx", "-g", "daemon off;"]
-                EOL
+                # Створюємо Dockerfile явно (без heredoc)
+                echo "FROM nginx:alpine" > Dockerfile.light
+                echo "COPY public/index.html /usr/share/nginx/html/index.html" >> Dockerfile.light
+                echo "EXPOSE 80" >> Dockerfile.light
+                echo 'CMD ["nginx", "-g", "daemon off;"]' >> Dockerfile.light
+    
+                # Перевіряємо, чи файл створений
+                cat Dockerfile.light
                 
                 docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
                 docker tag $IMAGE_NAME:latest $IMAGE_NAME:$BUILD_NUMBER
