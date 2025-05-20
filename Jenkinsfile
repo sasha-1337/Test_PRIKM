@@ -36,7 +36,7 @@ pipeline {
                 sh """
                 # Створюємо Dockerfile явно (без heredoc)
                 echo "FROM nginx:alpine" > Dockerfile.light
-                echo "COPY public/index.html /usr/share/nginx/html/index.html" >> Dockerfile.light
+                echo "COPY index.html /usr/share/nginx/html/index.html" >> Dockerfile.light
                 echo "EXPOSE 80" >> Dockerfile.light
                 echo 'CMD ["nginx", "-g", "daemon off;"]' >> Dockerfile.light
     
