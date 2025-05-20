@@ -21,7 +21,7 @@ pipeline {
         stage('Cleanup old container') {
             steps {
                 sh '''
-                if [ "$(sudo docker ps -aq -f name=$CONTAINER_NAME)" ]; then
+                if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
                     echo "Stopping and removing existing container: $CONTAINER_NAME"
                     docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME
                 else
@@ -41,7 +41,7 @@ pipeline {
                 CMD ["nginx", "-g", "daemon off;"]
                 EOL
 
-                sudo docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
+                docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
                 '''
             }
         }
@@ -49,7 +49,7 @@ pipeline {
         stage('Run container') {
             steps {
                 sh '''
-                sudo docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME:latest
+                docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME:latest
                 '''
             }
         }
