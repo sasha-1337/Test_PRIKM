@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
         CONTAINER_NAME = "prikm_kurs"
-        IMAGE_NAME = "squeezyfish/kurs"
+        LOCAL_IMAGE = "prikm:latest"
+        DOCKERHUB_IMAGE = "squeezyfish/kurs:latest"
     }
 
     stages {
@@ -42,14 +43,23 @@ pipeline {
                 EOL
 
                 docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
+                docker tag $LOCAL_IMAGE $DOCKERHUB_IMAGE
                 '''
+            }
+        }
+
+        stage('📤 Push to DockerHub') {
+            steps {
+                withDockerRegistry([credentialsId: 'dockerhub_token', url: '']) {
+                    sh 'docker push $DOCKERHUB_IMAGE'
+                }
             }
         }
 
         stage('Run container') {
             steps {
                 sh '''
-                docker run -d --name $CONTAINER_NAME -p 8085:80 $IMAGE_NAME:latest
+                docker run -d --name $CONTAINER_NAME -p 8085:80 $DOCKERHUB_IMAGE
                 '''
             }
         }
