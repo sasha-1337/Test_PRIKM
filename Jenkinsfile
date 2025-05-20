@@ -41,9 +41,8 @@ pipeline {
                 CMD ["nginx", "-g", "daemon off;"]
                 EOL
                 
-                docker build -f Dockerfile.light -t prikm:latest .
-                docker tag prikm $IMAGE_NAME:latest
-                docker tag prikm $IMAGE_NAME:$BUILD_NUMBER
+                docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
+                docker tag $IMAGE_NAME:latest $IMAGE_NAME:$BUILD_NUMBER
                 '''
             }
         }
