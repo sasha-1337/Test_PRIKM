@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        CONTAINER_NAME = "prikm_lab2"
+        CONTAINER_NAME = "prikm_kurs"
         IMAGE_NAME = "squeezyfish/prikm"
     }
 
@@ -36,7 +36,7 @@ pipeline {
                 sh '''
                 cat > Dockerfile.light <<EOL
                 FROM nginx:alpine
-                COPY index.html /usr/share/nginx/html/index.html
+                COPY public/index.html /usr/share/nginx/html/index.html
                 EXPOSE 80
                 CMD ["nginx", "-g", "daemon off;"]
                 EOL
