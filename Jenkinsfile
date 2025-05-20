@@ -42,7 +42,7 @@ pipeline {
                 CMD ["nginx", "-g", "daemon off;"]
                 EOL
 
-                docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
+                docker build -f Dockerfile.light -t $LOCAL_IMAGE .
                 docker tag $LOCAL_IMAGE $DOCKERHUB_IMAGE
                 '''
             }
