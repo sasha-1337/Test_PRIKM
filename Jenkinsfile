@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         CONTAINER_NAME = "prikm_lab2"
-        IMAGE_NAME = "squeezyfish/prikm-fasttest"
+        IMAGE_NAME = "squeezyfish/prikm"
     }
 
     stages {
