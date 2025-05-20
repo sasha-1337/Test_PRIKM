@@ -33,7 +33,7 @@ pipeline {
 
         stage('Build lightweight image') {
             steps {
-                sh '''
+                sh """
                 cat > Dockerfile.light <<EOL
                 FROM nginx:alpine
                 COPY public/index.html /usr/share/nginx/html/index.html
@@ -43,7 +43,7 @@ pipeline {
                 
                 docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
                 docker tag $IMAGE_NAME:latest $IMAGE_NAME:$BUILD_NUMBER
-                '''
+                """
             }
         }
 
