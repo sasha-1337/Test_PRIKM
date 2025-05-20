@@ -50,7 +50,7 @@ pipeline {
 
         stage('📤 Push to DockerHub') {
             steps {
-                withDockerRegistry([credentialsId: 'dockerhub_token', url: '']) {
+                withDockerRegistry([credentialsId: "dockerhub_token", url: ""]) {
                     sh '''
                     docker push $IMAGE_NAME:latest
                     docker push $IMAGE_NAME:$BUILD_NUMBER
