@@ -43,7 +43,7 @@ pipeline {
                 # Перевіряємо, чи файл створений
                 cat Dockerfile.light
                 
-                docker build -f Dockerfile.light -t $IMAGE_NAME:latest .
+                docker build --no-cache -f Dockerfile.light -t $IMAGE_NAME:latest .
                 docker tag $IMAGE_NAME:latest $IMAGE_NAME:$BUILD_NUMBER
                 """
             }
