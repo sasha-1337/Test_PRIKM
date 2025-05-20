@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         CONTAINER_NAME = "prikm_kurs"
-        IMAGE_NAME = "squeezyfish/prikm"
+        IMAGE_NAME = "squeezyfish/kurs"
     }
 
     stages {
