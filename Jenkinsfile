@@ -3,7 +3,6 @@ pipeline {
     environment {
         CONTAINER_NAME = "prikm_kurs"
         IMAGE_NAME = "squeezyfish/kurs"
-        REACT_APP_DIR = "my-react-app"
     }
 
     stages {
@@ -18,18 +17,7 @@ pipeline {
                 checkout scm
             }
         }
-        
-        stage('Build React Application') {
-            steps {
-                dir("${REACT_APP_DIR}") {
-                    sh '''
-                    npm install
-                    CI=false npm run build
-                    '''
-                }
-            }
-        }
-        
+
         stage('Cleanup old container') {
             steps {
                 sh '''
@@ -48,7 +36,7 @@ pipeline {
                 sh """
                 # Створюємо Dockerfile явно (без heredoc)
                 echo "FROM nginx:alpine" > Dockerfile.light
-                echo "COPY ${REACT_APP_DIR}/build /usr/share/nginx/html" >> Dockerfile.light
+                echo "COPY index.html /usr/share/nginx/html/index.html" >> Dockerfile.light
                 echo "EXPOSE 80" >> Dockerfile.light
                 echo 'CMD ["nginx", "-g", "daemon off;"]' >> Dockerfile.light
     
