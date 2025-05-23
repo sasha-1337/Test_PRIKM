@@ -24,7 +24,7 @@ pipeline {
                 dir("${REACT_APP_DIR}") {
                     sh '''
                     npm install
-                    npm run build
+                    CI=false npm run build
                     '''
                 }
             }
