@@ -57,42 +57,14 @@ function ShowText({ selectedSingle, selectedAlbum, selectedSong }) {
 
                             {formatText("Тут може бути текст вашого синглу або пісні")}
                             {formatText(
-                                `Опис альбому або додаткові відомості
-                            articles follow few steps that are Articles
-                            that need little modification/improvement
-                            from reviewers are published first.
-                            Any geeks can help other geeks by writing
-
-                            articles on the GeeksforGeeks, publishing
-                            articles follow few steps that are Articles
-
-                            that need little modification/improvement
-                            from reviewers are published first.
-                            Any geeks can help other geeks by writing
-
-                            articles on the GeeksforGeeks, publishing
-                            articles follow few steps that are Articles
-                            that need little modification/improvement
-
-                            from reviewers are published first.
-                            Any geeks can help other geeks by writing
-
-                            articles on the GeeksforGeeks, publishing
-                            articles follow few steps that are Articles
-                            that need little modification/improvement
-                            from reviewers are published first.
-                            Any geeks can help other geeks by writing
-                            articles on the GeeksforGeeks, publishing
-                            articles follow few steps that are Articles
-                            that need little modification/improvement
-                            from reviewers are published first.`)}
+                                `Опис альбому або додаткові відомості`)}
                         </div>
                     </div>
                 )}
             </div>
             <div className={styles.descriptionVynilContainer}>
                 {/* Description Square */}
-                <VinylPlayer selectedAlbum={selectedAlbum}></VinylPlayer>
+                {/*<VinylPlayer selectedAlbum={selectedAlbum}></VinylPlayer>*/}
                 <div className={styles.descriptionContainer}>
                     {selectedSingle && (
                         <div className={styles.description}>
@@ -122,47 +94,7 @@ function ShowText({ selectedSingle, selectedAlbum, selectedSong }) {
 
                                 <h3 style={{ marginBottom: '5px' }}>Опис</h3>
                                 {formatText(
-                                    `Опис альбому або додаткові відомості
-                                articles follow few steps that are Articles
-                                that need little modification/improvement
-                                from reviewers are published first.
-                                Any geeks can help other geeks by writing
-
-                                articles on the GeeksforGeeks, publishing
-                                articles follow few steps that are Articles
-
-                                that need little modification/improvement
-                                from reviewers are published first.
-                                Any geeks can help other geeks by writing
-
-                                articles on the GeeksforGeeks, publishing
-                                articles follow few steps that are Articles
-                                that need little modification/improvement
-
-                                from reviewers are published first.
-                                Any geeks can help other geeks by writing
-
-                                articles on the GeeksforGeeks, publishing
-                                articles follow few steps that are Articles
-                                that need little modification/improvement
-                                from reviewers are published first.
-                                Any geeks can help other geeks by writing
-                                articles on the GeeksforGeeks, publishing
-                                articles follow few steps that are Articles
-                                that need little modification/improvement
-                                from reviewers are published first.
-                                from reviewers are published first.
-                                Any geeks can help other geeks by writing
-
-                                articles on the GeeksforGeeks, publishing
-                                articles follow few steps that are Articles
-                                that need little modification/improvement
-                                from reviewers are published first.
-                                Any geeks can help other geeks by writing
-                                articles on the GeeksforGeeks, publishing
-                                articles follow few steps that are Articles
-                                that need little modification/improvement
-                                from reviewers are published first.`)}
+                                    `Опис альбому або додаткові відомості`)}
                             </div>
                         </div>
                     )}
